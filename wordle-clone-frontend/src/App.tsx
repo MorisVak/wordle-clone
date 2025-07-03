@@ -17,7 +17,7 @@ function App() {
     const currentArray = arraysFilledBoolean.map((val) => val);
     currentArray.forEach((val) => {
       if (!val) {
-        return (val = true);
+        val = true;
       }
     });
     setArraysFilledBoolean(currentArray);
@@ -38,13 +38,27 @@ function App() {
       setGuess((prevGuess) => {
         if (prevGuess.length < 5) {
           const update = prevGuess + key;
-          console.log(update);
-
+          console.log("UPDATED", update);
+          handleFillingArray(update);
           return update;
         } else {
           return prevGuess;
         }
       });
+  };
+
+  const handleFillingArray = (newGuess: string) => {
+    const currentIndex = arraysFilledBoolean.indexOf(false);
+    console.log("INDEX : ", currentIndex);
+    console.log("NEW GUESS : ", newGuess);
+
+    const mutatedArray = [...wordArrays];
+    for (let i = 0; i < guess.length; i++) {
+      mutatedArray[currentIndex][i] = newGuess[i];
+    }
+    console.log(mutatedArray);
+
+    setWordArrays(mutatedArray);
   };
 
   const handleTyping = (event: KeyboardEvent) => {
