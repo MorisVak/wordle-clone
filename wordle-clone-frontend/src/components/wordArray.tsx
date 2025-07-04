@@ -1,16 +1,21 @@
-import SingleChar from "./singleChar";
-
 interface WordArrayProps {
-  wordArray: string[];
+  guess: string;
 }
 
-const WordArray = ({ wordArray }: WordArrayProps) => {
-  return (
-    <div className="char-boxes">
-      {wordArray.map((val, ind) => (
-        <SingleChar key={ind} singleChar={val} />
-      ))}
-    </div>
-  );
+const guessLength = 5;
+
+const WordArray = ({ guess }: WordArrayProps) => {
+  const tiles = [];
+
+  for (let i = 0; i < guessLength; i++) {
+    const char = guess[i];
+    tiles.push(
+      <div key={i} className="single-boxes">
+        {char}
+      </div>
+    );
+  }
+
+  return <div className="char-boxes">{tiles}</div>;
 };
 export default WordArray;
