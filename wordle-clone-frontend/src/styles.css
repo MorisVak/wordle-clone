@@ -1,13 +1,30 @@
+header {
+  margin-top: 30px;
+  margin-bottom: 30px;
+  font-size: 40px;
+  text-align: center;
+  animation: text-glow 2s ease-in-out infinite alternate;
+}
+
+@keyframes text-glow {
+  from {
+    text-shadow: 0px 0px 15px beige, 0px 0px 20px beige;
+  }
+
+  to {
+    text-shadow: 0px 0px 25px beige;
+  }
+}
+
 body {
   background: #242424;
 }
 
 .board {
-  height: 100vh;
   display: flex;
   flex-direction: column;
-  justify-content: center; /* way to center the text inside of the boxes*/
-  align-items: center; /* way to center the text inside of the boxes*/
+  justify-content: center;
+  align-items: center;
 }
 
 .char-boxes {
@@ -17,19 +34,23 @@ body {
 
 .single-boxes {
   border: 1px solid white;
-  width: 40px;
-  height: 40px;
+  width: 30px;
+  height: 30px;
   padding: 1rem;
   margin: 0.5rem;
   font-size: 24px;
   display: flex;
-  justify-content: center; /* way to center the text inside of the boxes*/
-  align-items: center; /* way to center the text inside of the boxes*/
+  justify-content: center;
+  align-items: center;
   text-transform: uppercase;
+  outline: none;
+  user-select: none;
 }
 
 * {
   color: white;
+  outline: none;
+  user-select: none;
 }
 
 .correct {
@@ -42,7 +63,7 @@ body {
   }
   50% {
     transform: rotateY(270deg);
-    background-color: #242424; /* temporarily hides letter */
+    background-color: #242424;
     color: transparent;
   }
   51% {
@@ -55,7 +76,7 @@ body {
 }
 
 .flip {
-  animation: flip-tile 0.6s ease-in;
+  animation: flip-tile 0.8s ease-in;
   transform-style: preserve-3d;
   transform-origin: center;
 }
@@ -66,4 +87,35 @@ body {
 
 .no {
   background-color: grey;
+}
+
+.single-key {
+  padding: 10px 12px;
+  border: 1px solid #414141;
+  background-color: #414141;
+  border-radius: 10%;
+  display: flex;
+  justify-content: center;
+  transition: transform 0.3s, background-color 0.3s;
+}
+
+.single-key:hover {
+  background-color: #222222;
+  transform: translateY(-3px);
+}
+
+.keyboard-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 5px;
+  gap: 5px;
+}
+
+.keyboard {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }

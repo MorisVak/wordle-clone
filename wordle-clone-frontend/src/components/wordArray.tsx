@@ -18,7 +18,7 @@ const WordArray = ({ guess, filledLine, wordOfTheDay }: WordArrayProps) => {
   useEffect(() => {
     if (filledLine) {
       for (let i = 0; i < guessLength; i++) {
-        const char = guess[i];
+        const char = guess[i].toLocaleLowerCase();
         setTimeout(() => {
           setClassNames((prev) => {
             const updated = [...prev];

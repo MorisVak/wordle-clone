@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import WordArray from "./components/wordArray";
 import "./styles.css";
+import Keyboard from "./components/keyboard";
 
 const wordOfTheDay = "crawl";
 
@@ -11,45 +12,16 @@ function App() {
 
   useEffect(() => {
     const handleTyping = (event: KeyboardEvent) => {
-      if (gameOver) {
-        return;
-      }
       const key = event.key;
       if (key === "Enter") {
-        if (currentGuess.length !== 5) {
-          return;
-        }
-        //get index of current playing position
-        const currentAttemptIndex = guesses.findIndex((val) => val == null);
-        //checking if result is correct
-        const correctGuess = currentGuess.toLocaleLowerCase() === wordOfTheDay;
-        const newWordArray = [...guesses];
-        newWordArray[currentAttemptIndex] = currentGuess;
-
-        if (currentAttemptIndex === 5) {
-          setGameOver(true);
-        }
-
-        if (correctGuess) {
-          setGameOver(true);
-        }
-        setGuesses(newWordArray);
-        setCurrentGuess("");
+        handleEnter();
       }
 
       if (key === "Backspace") {
-        if (currentGuess.length === 0) {
-          return;
-        }
-        setCurrentGuess(currentGuess.slice(0, -1));
-        return;
-      }
-
-      if (currentGuess.length >= 5) {
-        return;
+        handleBackspace();
       }
       if (/^[a-z]$/.test(key.toLocaleLowerCase())) {
-        setCurrentGuess((oldGuess) => oldGuess + key);
+        handleNormalKey(key);
       }
     };
     window.addEventListener("keyup", handleTyping);
@@ -57,8 +29,46 @@ function App() {
     return () => window.removeEventListener("keyup", handleTyping);
   }, [currentGuess, gameOver, guesses]);
 
+  const handleEnter = () => {
+    if (currentGuess.length !== 5 || gameOver) {
+      return;
+    }
+    //get index of current playing position
+    const currentAttemptIndex = guesses.findIndex((val) => val == null);
+    //checking if result is correct
+    const correctGuess = currentGuess.toLocaleLowerCase() === wordOfTheDay;
+    const newWordArray = [...guesses];
+    newWordArray[currentAttemptIndex] = currentGuess;
+
+    if (currentAttemptIndex === 5) {
+      setGameOver(true);
+    }
+
+    if (correctGuess) {
+      setGameOver(true);
+    }
+    setGuesses(newWordArray);
+    setCurrentGuess("");
+  };
+
+  const handleBackspace = () => {
+    if (currentGuess.length === 0 || gameOver) {
+      return;
+    }
+    setCurrentGuess(currentGuess.slice(0, -1));
+    return;
+  };
+
+  const handleNormalKey = (key: string) => {
+    if (currentGuess.length >= 5 || gameOver) {
+      return;
+    }
+    setCurrentGuess((oldGuess) => oldGuess + key);
+  };
+
   return (
     <>
+      <header>Wordle Clone</header>
       <div className="board">
         {guesses.map((val, index) => {
           const isCurrentGuess =
@@ -72,6 +82,13 @@ function App() {
             />
           );
         })}
+        <div className="keyboard">
+          <Keyboard
+            handleBackspace={handleBackspace}
+            handleEnter={handleEnter}
+            handleNormalKey={handleNormalKey}
+          />
+        </div>
       </div>
     </>
   );
