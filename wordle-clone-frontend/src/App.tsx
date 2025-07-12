@@ -3,7 +3,7 @@ import WordArray from "./components/wordArray";
 import "./styles.css";
 import Keyboard from "./components/keyboard";
 
-const wordOfTheDay = "crawl";
+const solution = "crawl";
 
 function App() {
   const [guesses, setGuesses] = useState<string[]>(Array(6).fill(null));
@@ -36,7 +36,7 @@ function App() {
     //get index of current playing position
     const currentAttemptIndex = guesses.findIndex((val) => val == null);
     //checking if result is correct
-    const correctGuess = currentGuess.toLocaleLowerCase() === wordOfTheDay;
+    const correctGuess = currentGuess.toLocaleLowerCase() === solution;
     const newWordArray = [...guesses];
     newWordArray[currentAttemptIndex] = currentGuess;
 
@@ -78,7 +78,7 @@ function App() {
               key={index}
               guess={isCurrentGuess ? currentGuess : val ?? ""}
               filledLine={!isCurrentGuess && val != null}
-              wordOfTheDay={wordOfTheDay}
+              wordOfTheDay={solution}
             />
           );
         })}
@@ -87,6 +87,8 @@ function App() {
             handleBackspace={handleBackspace}
             handleEnter={handleEnter}
             handleNormalKey={handleNormalKey}
+            guesses={guesses}
+            wordOfTheDay={solution}
           />
         </div>
       </div>

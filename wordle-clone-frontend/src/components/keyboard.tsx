@@ -4,6 +4,8 @@ interface KeyboardProps {
   handleNormalKey: (key: string) => void;
   handleBackspace: () => void;
   handleEnter: () => void;
+  guesses: string[];
+  wordOfTheDay: string;
 }
 
 const keys: string[][] = [
@@ -16,6 +18,8 @@ const Keyboard = ({
   handleEnter,
   handleBackspace,
   handleNormalKey,
+  guesses,
+  wordOfTheDay,
 }: KeyboardProps) => {
   return (
     <div>
@@ -26,6 +30,8 @@ const Keyboard = ({
           handleNormalKey={handleNormalKey}
           handleBackspace={handleBackspace}
           handleEnter={handleEnter}
+          guesses={guesses}
+          solution={wordOfTheDay}
         />
       ))}
     </div>

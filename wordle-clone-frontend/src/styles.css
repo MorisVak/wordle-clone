@@ -104,6 +104,31 @@ body {
   transform: translateY(-3px);
 }
 
+.key-correct {
+  background-color: darkgreen;
+}
+
+.key-almost {
+  background-color: darkgoldenrod;
+}
+
+.key-no {
+  background-color: grey;
+  pointer-events: none;
+}
+
+.single-key.key-correct:hover {
+  background-color: rgb(0, 60, 0);
+}
+
+.single-key.key-almost:hover {
+  background-color: rgb(139, 103, 10);
+}
+
+.single-key.key-no:hover {
+  background-color: grey;
+}
+
 .keyboard-row {
   display: flex;
   align-items: center;
