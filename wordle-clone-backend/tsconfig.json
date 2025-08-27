@@ -1,0 +1,11 @@
+{
+  "compilerOptions": {
+    "target": "ES2022", // Node understands modern JS
+    "module": "CommonJS", // or "NodeNext" if using ESM
+    "rootDir": "src", // your TS source files
+    "outDir": "dist", // compiled JS output
+    "esModuleInterop": true, // makes imports easier
+    "strict": true, // enable strict type-checking
+    "skipLibCheck": true // faster builds
+  }
+}
