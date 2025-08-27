@@ -1,0 +1,1 @@
+CREATE TABLE word_of_the_day 

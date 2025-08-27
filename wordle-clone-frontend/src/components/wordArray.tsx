@@ -1,5 +1,5 @@
-import "../styles.css";
-import { useEffect, useState } from "react";
+import '../styles.css';
+import { useEffect, useState } from 'react';
 
 interface WordArrayProps {
   guess: string;
@@ -11,7 +11,7 @@ const guessLength = 5;
 
 const WordArray = ({ guess, filledLine, wordOfTheDay }: WordArrayProps) => {
   const [classNames, setClassNames] = useState<string[]>(
-    Array(guessLength).fill("single-boxes")
+    Array(guessLength).fill('single-boxes')
   );
   const tiles = [];
 
@@ -23,11 +23,11 @@ const WordArray = ({ guess, filledLine, wordOfTheDay }: WordArrayProps) => {
           setClassNames((prev) => {
             const updated = [...prev];
             if (char === wordOfTheDay[i]) {
-              updated[i] = "single-boxes correct flip";
+              updated[i] = 'single-boxes correct flip';
             } else if (wordOfTheDay.includes(char)) {
-              updated[i] = "single-boxes almost flip";
+              updated[i] = 'single-boxes almost flip';
             } else {
-              updated[i] = "single-boxes no flip";
+              updated[i] = 'single-boxes no flip';
             }
             return updated;
           });
